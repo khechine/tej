@@ -1,0 +1,118 @@
+{
+    "actions": [],
+    "creation": "2026-01-14 17:00:00.000000",
+    "doctype": "DocType",
+    "editable_grid": 1,
+    "engine": "InnoDB",
+    "field_order": [
+        "company",
+        "month",
+        "year",
+        "column_break_1",
+        "declaration_type",
+        "status",
+        "certificates_section",
+        "get_certificates",
+        "certificates",
+        "xml_section",
+        "generate_xml",
+        "xml_file"
+    ],
+    "fields": [
+        {
+            "fieldname": "company",
+            "fieldtype": "Link",
+            "label": "Company",
+            "options": "Company",
+            "reqd": 1
+        },
+        {
+            "fieldname": "month",
+            "fieldtype": "Select",
+            "label": "Month",
+            "options": "01\n02\n03\n04\n05\n06\n07\n08\n09\n10\n11\n12",
+            "reqd": 1
+        },
+        {
+            "fieldname": "year",
+            "fieldtype": "Int",
+            "label": "Year",
+            "reqd": 1
+        },
+        {
+            "fieldname": "column_break_1",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "declaration_type",
+            "fieldtype": "Select",
+            "label": "Declaration Type",
+            "options": "Monthly\nOccasional",
+            "default": "Monthly"
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "label": "Status",
+            "options": "Draft\nGenerated\nSubmitted",
+            "default": "Draft",
+            "read_only": 1
+        },
+        {
+            "fieldname": "certificates_section",
+            "fieldtype": "Section Break",
+            "label": "Certificates"
+        },
+        {
+            "fieldname": "get_certificates",
+            "fieldtype": "Button",
+            "label": "Get Certificates"
+        },
+        {
+            "fieldname": "certificates",
+            "fieldtype": "Table",
+            "label": "Certificates",
+            "options": "Tej RS Declaration Certificate"
+        },
+        {
+            "fieldname": "xml_section",
+            "fieldtype": "Section Break",
+            "label": "XML Generation"
+        },
+        {
+            "fieldname": "generate_xml",
+            "fieldtype": "Button",
+            "label": "Generate XML"
+        },
+        {
+            "fieldname": "xml_file",
+            "fieldtype": "Attach",
+            "label": "XML File",
+            "read_only": 1
+        }
+    ],
+    "index_web_pages_for_search": 1,
+    "links": [],
+    "modified": "2026-01-14 17:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "Tej",
+    "name": "Tej RS Declaration",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "track_changes": 1
+}

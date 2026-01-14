@@ -1,0 +1,79 @@
+{
+    "actions": [],
+    "creation": "2026-01-14 17:00:00.000000",
+    "doctype": "DocType",
+    "editable_grid": 1,
+    "engine": "InnoDB",
+    "field_order": [
+        "rs_certificate",
+        "supplier",
+        "rs_code",
+        "gross_amount",
+        "rs_amount",
+        "net_amount"
+    ],
+    "fields": [
+        {
+            "fieldname": "rs_certificate",
+            "fieldtype": "Link",
+            "in_list_view": 1,
+            "label": "RS Certificate",
+            "options": "Tej RS Certificate",
+            "reqd": 1
+        },
+        {
+            "fetch_from": "rs_certificate.supplier",
+            "fieldname": "supplier",
+            "fieldtype": "Link",
+            "in_list_view": 1,
+            "label": "Supplier",
+            "options": "Supplier",
+            "read_only": 1
+        },
+        {
+            "fetch_from": "rs_certificate.rs_code",
+            "fieldname": "rs_code",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "label": "RS Code",
+            "options": "1\n2\n3\n4\n5\n6\n7\n8\n9",
+            "read_only": 1
+        },
+        {
+            "fetch_from": "rs_certificate.gross_amount",
+            "fieldname": "gross_amount",
+            "fieldtype": "Currency",
+            "in_list_view": 1,
+            "label": "Gross Amount",
+            "options": "currency",
+            "read_only": 1
+        },
+        {
+            "fetch_from": "rs_certificate.rs_amount",
+            "fieldname": "rs_amount",
+            "fieldtype": "Currency",
+            "in_list_view": 1,
+            "label": "RS Amount",
+            "options": "currency",
+            "read_only": 1
+        },
+        {
+            "fetch_from": "rs_certificate.net_amount",
+            "fieldname": "net_amount",
+            "fieldtype": "Currency",
+            "in_list_view": 1,
+            "label": "Net Amount",
+            "options": "currency",
+            "read_only": 1
+        }
+    ],
+    "istable": 1,
+    "modified": "2026-01-14 17:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "Tej",
+    "name": "Tej RS Declaration Certificate",
+    "owner": "Administrator",
+    "permissions": [],
+    "sort_field": "modified",
+    "sort_order": "DESC"
+}
