@@ -11,3 +11,6 @@ This app handles Tunisian fiscal requirements on the **Tej** platform.
 bench get-app https://github.com/khechine/tej.git
 bench --site [your-site] install-app tej
 ```
+
+## Usage
+For detailed instructions on how to use the app, please refer to [USAGE.md](USAGE.md).
