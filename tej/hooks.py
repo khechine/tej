@@ -25,3 +25,6 @@ doctype_list_js = {
 #         "on_submit": "tej.tej.utils.rs_logic.create_rs_certificate"
 #     }
 # }
+
+# After Migrate
+after_migrate = "tej.tej.utils.setup.create_tej_custom_fields"

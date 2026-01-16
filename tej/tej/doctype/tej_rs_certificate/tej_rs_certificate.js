@@ -7,9 +7,17 @@ frappe.ui.form.on('Tej RS Certificate', {
                     frm.set_value('gross_amount', r.base_grand_total || r.grand_total);
 
                     // Fetch default RS rate from Supplier
-                    frappe.db.get_value('Supplier', r.supplier, 'custom_rs_rate', (s) => {
-                        if (s && s.custom_rs_rate) {
-                            frm.set_value('rs_rate', s.custom_rs_rate);
+                    frappe.call({
+                        method: 'frappe.client.get_value',
+                        args: {
+                            doctype: 'Supplier',
+                            filters: { name: r.supplier },
+                            fieldname: 'custom_rs_rate'
+                        },
+                        callback: (s) => {
+                            if (s.message && s.message.custom_rs_rate) {
+                                frm.set_value('rs_rate', s.message.custom_rs_rate);
+                            }
                         }
                     });
                 }
