@@ -10,9 +10,14 @@ app_email = "mehdi@erpbox.online"
 app_license = "MIT"
 
 # DocType JS
-# doctype_js = {
-#     "Purchase Invoice": "public/js/purchase_invoice.js"
-# }
+doctype_js = {
+    "Purchase Invoice": "public/js/purchase_invoice.js"
+}
+
+# List View JS
+doctype_list_js = {
+    "Purchase Invoice": "public/js/purchase_invoice_list.js"
+}
 
 # Document Events
 # doc_events = {

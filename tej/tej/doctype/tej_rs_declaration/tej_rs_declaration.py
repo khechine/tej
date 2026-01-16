@@ -23,7 +23,8 @@ class TejRSDeclaration(Document):
 
 	@frappe.whitelist()
 	def generate_xml_file(self):
-		xml_content = generate_rs_xml(self)
+		certificates = [c.rs_certificate for c in self.certificates]
+		xml_content = generate_rs_xml(self.company, self.year, self.month, certificates)
 		
 		file_name = f"RS_Declaration_{self.company}_{self.year}_{self.month}.xml"
 		_file = frappe.get_doc({

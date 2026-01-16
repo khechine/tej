@@ -3,18 +3,18 @@ from frappe.utils import get_first_day, get_last_day, flt
 import xml.etree.ElementTree as ET
 from xml.dom import minidom
 
-def generate_rs_xml(doc):
+def generate_rs_xml(company, year, month, certificates):
 	"""
 	Generates the XML for Tej Retenue à la Source (RS) Declaration
 	"""
 	root = ET.Element("DeclarationRS")
 	
 	# Identifiant Fiscal
-	company = frappe.get_doc("Company", doc.company)
+	company_doc = frappe.get_doc("Company", company)
 	identifiant = ET.SubElement(root, "IdentifiantFiscal")
 	
 	# Assuming tax_id is formatted as '1234567A/P/M/000'
-	tax_id = company.tax_id or ""
+	tax_id = company_doc.tax_id or ""
 	matricule = tax_id.split('/')[0] if '/' in tax_id else tax_id
 	code_tva = tax_id.split('/')[1] if '/' in tax_id and len(tax_id.split('/')) > 1 else ""
 	code_cat = tax_id.split('/')[2] if '/' in tax_id and len(tax_id.split('/')) > 2 else ""
@@ -27,14 +27,14 @@ def generate_rs_xml(doc):
 
 	# Periode
 	periode = ET.SubElement(root, "Periode")
-	ET.SubElement(periode, "Annee").text = str(doc.year)
-	ET.SubElement(periode, "Mois").text = doc.month
+	ET.SubElement(periode, "Annee").text = str(year)
+	ET.SubElement(periode, "Mois").text = str(month).zfill(2)
 
 	# Certificats
 	certificats_node = ET.SubElement(root, "Certificats")
 	
-	for row in doc.certificates:
-		cert_doc = frappe.get_doc("Tej RS Certificate", row.rs_certificate)
+	for cert_name in certificates:
+		cert_doc = frappe.get_doc("Tej RS Certificate", cert_name)
 		supplier = frappe.get_doc("Supplier", cert_doc.supplier)
 		
 		cert_node = ET.SubElement(certificats_node, "Certificat")
