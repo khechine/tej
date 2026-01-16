@@ -13,11 +13,11 @@ def export_invoice(invoice):
 	# Find related RS Certificate
 	certificates = frappe.get_all("Tej RS Certificate", filters={
 		"purchase_invoice": invoice,
-		"docstatus": 1
-	})
+		"docstatus": ["<", 2]
+	}, order_by="docstatus desc, creation desc")
 	
 	if not certificates:
-		frappe.throw(frappe._("Aucun certificat de retenue à la source (RS) soumis n'a été trouvé pour cette facture."))
+		frappe.throw(frappe._("Aucun certificat de retenue à la source (RS) n'a été trouvé pour cette facture. Veuillez en créer un d'abord."))
 	
 	# Use posting date of the invoice for period
 	posting_date = getdate(doc.posting_date)
@@ -50,8 +50,8 @@ def export_bulk(invoices):
 		inv_doc = frappe.get_doc("Purchase Invoice", inv_name)
 		certs = frappe.get_all("Tej RS Certificate", filters={
 			"purchase_invoice": inv_name,
-			"docstatus": 1
-		})
+			"docstatus": ["<", 2]
+		}, order_by="docstatus desc, creation desc")
 		
 		if certs:
 			certificate_names.append(certs[0].name)
@@ -62,7 +62,7 @@ def export_bulk(invoices):
 			months.add(posting_date.month)
 	
 	if not certificate_names:
-		frappe.throw(frappe._("Aucun certificat de retenue à la source (RS) soumis n'a été trouvé pour les factures sélectionnées."))
+		frappe.throw(frappe._("Aucun certificat de retenue à la source (RS) n'a été trouvé pour les factures sélectionnées. Veuillez vous assurer d'en avoir créé au moins un."))
 	
 	if len(companies) > 1:
 		frappe.throw(frappe._("Toutes les factures sélectionnées doivent appartenir à la même société."))
